@@ -1,0 +1,17 @@
+{
+    "name": "topicus_flutter_advanced",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "help": "node printhelp.js",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "build": "webpack",
+        "start": "lite-server -c bs-config.json"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "lite-server": "^2.2.0"
+    }
+}

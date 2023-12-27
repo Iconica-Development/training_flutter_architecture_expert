@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="./reveal/css/reveal.css">
+    <link rel="stylesheet" type="text/css" href="./iconica/iconica.css">
+    <link rel="stylesheet" type="text/css" href="reveal/lib/css/zenburn.css">
+    <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+        integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+    <title>Topicus Flutter Advanced Training</title>
+</head>
+
+<body>
+    <div id="logo">
+        <img src="./images/logo-iconica.svg" width=200 />
+    </div>
+    <div id="footer">
+        <table>
+            <tr>
+                <td><i class="far fa-envelope"></i></td>
+                <td class="last">niels@iconica.nl</td>
+                <td><i class="fas fa-globe"></i></td>
+                <td class="last">https://www.iconica.nl</td>
+            </tr>
+        </table>
+    </div>
+    <!-- slides -->
+    <div class="reveal">
+        <div class="slides">
+
+        </div>
+    </div>
+
+    <script>
+
+        var slides = [
+            // day 3
+            './0_intro.md',
+            './1_casus.md',
+            './2_layers_of_state_management.md',
+            './3_dependency_injection.md',
+            './4_storage_communication_singl_source_of_truth.md',
+            './5_state_management_patterns.md',
+            './6_create_your_own_statemanagement.md',
+            './7_common_packages.md',
+            './8_riverpod_in_theory.md',
+            './9_use_riverpod.md',
+            './10_flutter_hooks.md',
+            './11_solutions_to_common_problems.md',
+            './12_casus.md',
+        ];
+        let slidesNode = document.querySelectorAll('.slides')[0];
+        for (slideIndex in slides) {
+            const node = document.createElement('section');
+            node.setAttribute("data-separator-vertical", "^---$")
+            node.setAttribute("data-separator-notes", "Note:")
+            node.setAttribute("data-markdown", slides[slideIndex])
+            slidesNode.appendChild(node);
+        }
+    </script>
+
+    <script src="reveal/js/reveal.js"></script>
+    <script src="reveal/lib/js/head.min.js"></script>
+    <script defer>
+        Reveal.initialize({
+            dependencies: [
+                // Cross-browser shim that fully implements classList - https://github.com/eligrey/classList.js/
+                { src: 'reveal/lib/js/classList.js', condition: function () { return !document.body.classList; } },
+                // Interpret Markdown in <section> elements
+                { src: 'reveal/plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'reveal/plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                // Syntax highlight for <code> elements
+                { src: 'reveal/plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } },
+                // Zoom in and out with Alt+click
+                { src: 'reveal/plugin/zoom-js/zoom.js', async: true },
+                // Speaker notes
+                { src: 'reveal/plugin/notes/notes.js', async: true },
+                // MathJax
+                { src: 'reveal/plugin/math/math.js', async: true }
+            ]
+        });
+    </script>
+</body>
+
+</html>
