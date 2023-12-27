@@ -45,6 +45,7 @@ All parties involved should be able to view the status of a training.
   - Has:
     - A training
     - Planned dates
+    - A status
 
 ---
 ### Concepts
@@ -67,6 +68,35 @@ All parties involved should be able to view the status of a training.
     - A course
     - Reasoning
     - Type (Required, Optional)
+    - A review
+
+---
+### Concepts
+
+- **Course Review**
+  - A students feedback on a course
+  - Has:
+    - trainer ability score
+    - trainer ability description
+    - training suitability score
+    - training suitability description
+    - location score
+    - location description
+    - training quality score
+    - training quality description
+
+---
+### What are you going to build?
+
+An overview page where a paginated filtered ordered list of trainings is visible, based on the type of user you are. 
+
+Based on the user, you view training in several categories:
+
+Student: History, Upcoming, Available
+Trainer: Upcoming, History
+Administrator: All training in one view
+
+Clicking on a training will go to a detail page with different functionality based on the type of user.
   
 ---
 ### SDK
@@ -80,6 +110,5 @@ All parties involved should be able to view the status of a training.
       url: https://github.com/Iconica-Development/training_flutter_architecture_expert.git
       path: _sdk/flutter_architecture_training_sdk
       ref: "2024.1"
-  
   ```
   

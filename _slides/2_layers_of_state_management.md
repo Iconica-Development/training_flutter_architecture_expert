@@ -23,6 +23,45 @@ UI state vs App state vs System state
 
 
 ---
+### UI State
+
+Ephemeral state (sometimes called UI state or local state) is the state you can neatly contain in a single widget.
+
+This is, intentionally, a vague definition, so here are a few examples.
+
+- current page in a PageView
+- current progress of a complex animation
+- current selected tab in a BottomNavigationBar
+
+Other parts of the widget tree seldom need to access this kind of state. There is no need to serialize it, and it doesn’t change in complex ways.
+
+
+---
+### App State
+
+State that is not ephemeral, that you want to share across many parts of your app, and that you want to keep between user sessions, is what we call application state (sometimes also called shared state).
+
+Examples of application state:
+
+- User preferences
+- Login info
+- Notifications in a social networking app
+- The shopping cart in an e-commerce app
+- Read/unread state of articles in a news app
+
+For managing app state, you’ll want to research your options. Your choice depends on the complexity and nature of your app, your team’s previous experience, and many other aspects.
+
+---
+### System State
+
+State that exists outside of the scope of the app. Anything that is persisted is considered system state. The only way to access system state is through some form of I/O process.
+
+A couple examples:
+- The total count of reactions on a post
+- A history of changes made to users
+- All users currently connected
+
+---
 ## What type of state is it?
 
 > “The rule of thumb is: Do whatever is less awkward.”
