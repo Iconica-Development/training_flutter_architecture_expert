@@ -140,14 +140,17 @@ I will follow with 15 questions that describe a use case on what state is being 
 
 > I want to animate a transition between two widgets
 
+---
 ### Quiz - Question 13
 
 > I want to validate whether the syntax of an email is correct
 
+---
 ### Quiz - Question 14
 
 > I want to validate whether the password does not contain parts of the email
 
+---
 ### Quiz - Question 15
 
 > I want to validate whether the email already exists for another user
