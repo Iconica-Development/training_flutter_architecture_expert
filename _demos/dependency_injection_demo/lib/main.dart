@@ -16,6 +16,13 @@ class UserService {
   String toString() => 'UserService()';
 }
 
+class NewUserService implements UserService {
+  @override
+  String toString() {
+    return "This one is new";
+  }
+}
+
 void main(List<String> args) {
   runApp(MaterialApp(
     home: Scaffold(
@@ -23,8 +30,8 @@ void main(List<String> args) {
         service: ProperCounter(),
         child: DependencyProvider(
           lazyDependencyContainer: LazyDependencyContainer()
-            ..registerDependency((context) {
-              return UserService();
+            ..registerDependency<UserService>((context) {
+              return NewUserService();
             })
             ..registerDependency((context) {
               return TrainingService(

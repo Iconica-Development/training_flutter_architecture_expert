@@ -1,4 +1,4 @@
-# State mangement
+# State management
 
 ---
 ## State management in flutter
