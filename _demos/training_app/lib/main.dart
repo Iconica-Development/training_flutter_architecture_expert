@@ -2,11 +2,13 @@ import 'package:create_state_management/create_state_management.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_architecture_training_sdk/iconica_training_models.dart';
 import 'package:flutter_architecture_training_sdk/iconica_training_service.dart';
-
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 void main(List<String> args) {
   runApp(
-    const MaterialApp(
-      home: Scaffold(),
+    const ProviderScope(
+      child: MaterialApp(
+        home: Scaffold(),
+      ),
     ),
   );
 }

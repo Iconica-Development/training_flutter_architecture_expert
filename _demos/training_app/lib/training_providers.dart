@@ -9,6 +9,9 @@ final trainingServiceProvider = Provider<TrainingService>((ref) {
 
 final _coursesFutureProvider = FutureProvider<CourseFilterResult>((ref) async {
   var service = ref.read(trainingServiceProvider);
+
+  
+
   return await service.getPlannedCourses();
 });
 
@@ -67,6 +70,8 @@ class CoursesStateNotifier
     );
 
     var previousState = state;
+    state.maybeMap(data: (data) => AsyncData(data.value), orElse: () => state);
+
     state = state.map(
       data: (data) {
         var result = data.valueOrNull;
