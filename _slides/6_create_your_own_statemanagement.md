@@ -13,3 +13,8 @@
 - Bonus: Autodisposing
 - Bonus: Refetch data when a new ui element needs the data.
 - Bonus: Add transition listening
+
+---
+<!-- .slide: data-background="url('images/lab2.jpg')" --> 
+<!-- .slide: class="lab" -->
+## Lab time!

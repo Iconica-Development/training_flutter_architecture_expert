@@ -90,7 +90,7 @@ All parties involved should be able to view the status of a training.
 
 An overview page where a paginated filtered ordered list of trainings is visible, based on the type of user you are. 
 
-Based on the user, you view training in several categories:
+Based on the user, you view a training in several categories:
 
 Student: History, Upcoming, Available
 Trainer: Upcoming, History
@@ -103,7 +103,7 @@ Clicking on a training will go to a detail page with different functionality bas
 
 - Github link: [https://github.com/Iconica-Development/training_flutter_architecture_expert](https://github.com/Iconica-Development/training_flutter_architecture_expert)
 
-- Pubspec yml vermelding:
+- Pubspec yml definition:
   ```yml
   flutter_architecture_training_sdk:
     git:

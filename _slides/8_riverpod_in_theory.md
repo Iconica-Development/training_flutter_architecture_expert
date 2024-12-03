@@ -27,3 +27,7 @@ Widgets have access to the providerRef through a custom build method in HookCons
 
 Riverpod allows watching and listening to state, this means that your UI can get notified when state changes.
 
+---
+<!-- .slide: data-background="url('images/lab2.jpg')" --> 
+<!-- .slide: class="lab" -->
+## Lab time!

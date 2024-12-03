@@ -18,7 +18,7 @@ Validation in the app does not guarantee validated correct requests to your back
 ---
 Also, do not use the app's design to dictate the interaction of the backend. Define a logical interface according to REST or your backend principle of choice, and then define the interactions as 1 or more calls for your specific needs in the app.
 
-> A good alternative for central backends and minimal communication is to use graphQL, which flutter as full support for. 
+> A good alternative for central backends and minimal communication is to use graphQL, which flutter has full support for. 
 > https://pub.dev/packages/graphql
 
 ---
@@ -31,6 +31,17 @@ The app still can be modified or its network communication sniffed, meaning that
 Each platform should have (if not, do not use it) some sort of constraint enforcement. Firebase firestore has rules for example. 
 
 Writing strict constraints on the flutter side is required for a good app, but can lead to a false sense of security. Always set your rules.
+
+---
+### Architectural overview: Application platforms or Backends as a service
+
+When you use a BaaS and you introduce complex domain logic, external services or require more control over data integrity, then it is adviced to add a small stateless restful backend.
+
+This allows your backend to be reached by others, for example for payment webhooks.
+
+Furthermore, you can handle access control and domain rules through your programming language of choice rather than dealing with the backend specific rule definition.
+
+If you want to share domain logic between backend and front-end, I would advice to create a common dart model/service package and combine it with a dart-based backend.
 
 ---
 ## Security Concerns
@@ -52,7 +63,7 @@ SharedPreferences and file storage are not secure and mainly good for applicatio
 
 Use the secureStorage package for storing important data, like access tokens.
 
-Never add API keys into your flutter app if you do not want others to use them. Prefer to create a proxy backend in which you verify your users and so you can keep track of the usage of API keys.
+Never add API keys into your flutter app if you do not want others to use them. Prefer to create a intimidiary backend in which you verify your users and so you can keep track of the usage of API keys.
 
 ---
 ### Security: Communicating with backends

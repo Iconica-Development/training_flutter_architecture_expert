@@ -1,7 +1,7 @@
 import 'package:flutter_architecture_training_sdk/iconica_training_service.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-main() {
+void main() {
   test('display all students', () async {
     var service = TrainingService.withMockedData();
 

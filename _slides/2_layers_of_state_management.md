@@ -76,6 +76,11 @@ A couple examples:
 Yes, and no.
 
 ---
+<!-- .slide: data-background="url('images/lab2.jpg')" --> 
+<!-- .slide: class="lab" -->
+## Lab time!
+
+---
 ### Quiz
 
 I will follow with 15 questions that describe a use case on what state is being saved. Answer these questions to the best of your ability.

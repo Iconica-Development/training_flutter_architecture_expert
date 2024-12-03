@@ -98,7 +98,7 @@ class MyWidget extends StatelessWidget {
         // define state and context loading in this widget
         var someService = Service.of(context);
 
-        // current is an animatedWidget in this case
+        // current is an Listenable in this case
         var current = someService.getCurrent();
 
         return AnimatedBuilder(
@@ -113,3 +113,7 @@ class MyWidget extends StatelessWidget {
 }
 ```
 
+---
+<!-- .slide: data-background="url('images/lab2.jpg')" --> 
+<!-- .slide: class="lab" -->
+## Lab time!

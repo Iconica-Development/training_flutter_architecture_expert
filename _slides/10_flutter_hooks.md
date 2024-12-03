@@ -279,3 +279,8 @@ A series of hooks with no particular theme.
 - useScrollController	Creates and disposes a ScrollController.
 - usePageController	Creates and disposes a PageController.
 - useIsMounted	An equivalent to State.mounted for hooks
+
+---
+<!-- .slide: data-background="url('images/lab2.jpg')" --> 
+<!-- .slide: class="lab" -->
+## Lab time!

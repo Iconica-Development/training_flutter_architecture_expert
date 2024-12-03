@@ -307,6 +307,11 @@ States that show how the UI should react to change of data. Every BLoC has its i
 If we wanted to implement a login screen, we would need to pass LoginEvent with login details when the user clicks on the appropriate button. After receiving a response, the BLoC should show the SuccessState when the login has been completed successfully, or ErrorState when the user has entered the wrong credentials, or a different error has occurred
 
 ---
+<!-- .slide: data-background="url('images/lab2.jpg')" --> 
+<!-- .slide: class="lab" -->
+## Lab time!
+
+---
 ## Triple pattern (Segmented State)
 
 Separate state into:
@@ -349,3 +354,8 @@ ScopedBuilder<CounterStore, int>(
 ### The triple pattern
 
 > The triple pattern is often seen in combination with other state management solutions
+
+---
+<!-- .slide: data-background="url('images/lab2.jpg')" --> 
+<!-- .slide: class="lab" -->
+## Lab time!
