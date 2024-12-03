@@ -16,11 +16,25 @@ class StateContainerCreator<T> {
   });
 }
 
+class StateContainerFamilyCreator<T, A> {
+  final StateContainer<T> Function(BuildContext context, A) dependencyCreator;
+  final bool autoDispose;
+
+  StateContainerFamilyCreator({
+    required this.dependencyCreator,
+    this.autoDispose = false,
+  });
+}
+
 class LazyStateContainerRegistry {
   // a simple registry for dependencies
   final Map<Type, StateContainerCreator> _dependencies = {};
 
   final Map<Type, dynamic> _dependencyCache = {};
+
+  final Map<Type, StateContainerFamilyCreator> _familyDependencies = {};
+
+  final Map<Type, Map<dynamic, dynamic>> _familyCaches = {};
 
   void registerDependency<T>(
     StateContainer<T> Function(BuildContext context) dependencyCreator, {
@@ -30,6 +44,42 @@ class LazyStateContainerRegistry {
       dependencyCreator: dependencyCreator,
       autoDispose: autoDispose,
     );
+  }
+
+  void registerFamilyDependency<T, A>(
+    StateContainer<T> Function(BuildContext context, A argument)
+        dependencyCreator, {
+    bool autoDispose = false,
+  }) {
+    _familyDependencies[T] = StateContainerFamilyCreator<T, A>(
+      dependencyCreator: dependencyCreator,
+      autoDispose: autoDispose,
+    );
+  }
+
+  StateContainer<T>? resolveFamilyDependency<T, R>(
+    BuildContext context,
+    R argument,
+  ) {
+    StateContainerFamilyCreator? creator = _familyDependencies[T];
+    if (creator == null) {
+      return null;
+    }
+
+    var dependency =
+        creator.dependencyCreator.call(context, argument) as StateContainer<T>?;
+
+    if (dependency != null && creator.autoDispose) {
+      void disposeOnLastRemovedListener() {
+        if (dependency.listeners.isEmpty) {
+          dependency.dispose();
+          _dependencyCache.remove(T);
+        }
+      }
+
+      dependency.onRemoveListener(disposeOnLastRemovedListener);
+    }
+    return dependency;
   }
 
   StateContainer<T>? resolveDependency<T>(BuildContext context) {
@@ -62,7 +112,17 @@ class LazyStateContainerRegistry {
   }
 
   StateContainer<T>? getDependency<T>(BuildContext context) {
-    return _dependencyCache[T] ??= resolveDependency(context);
+    return _dependencyCache[T] ??= resolveDependency<T>(context);
+  }
+
+  StateContainer<T>? getFamilyDependency<T, R>(
+    BuildContext context,
+    R argument,
+  ) {
+    var result = _familyCaches.putIfAbsent(T, () => {})[argument] ??=
+        resolveFamilyDependency<T, R>(context, argument);
+
+    return result;
   }
 }
 
@@ -79,6 +139,12 @@ class StateContainerProvider extends InheritedWidget {
     var widget =
         context.dependOnInheritedWidgetOfExactType<StateContainerProvider>();
     return widget?._registry.getDependency<T>(context);
+  }
+
+  static StateContainer<T>? familyOf<T, R>(BuildContext context, R argument) {
+    var widget =
+        context.dependOnInheritedWidgetOfExactType<StateContainerProvider>();
+    return widget?._registry.getFamilyDependency<T, R>(context, argument);
   }
 
   @override
@@ -246,6 +312,10 @@ extension GetStateContainer on BuildContext {
   StateContainer<T> getState<T>() {
     return StateContainerProvider.of<T>(this)!;
   }
+
+  StateContainer<T> getStateFamily<T, R>(R argument) {
+    return StateContainerProvider.familyOf<T, R>(this, argument)!;
+  }
 }
 
 abstract class StateConsumer<T> extends StatelessWidget {
@@ -256,6 +326,23 @@ abstract class StateConsumer<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var state = context.getState<T>();
+    return StateBuilder<T>(stateContainer: state, builder: buildState);
+  }
+}
+
+abstract class StateConsumerFamily<T, R> extends StatelessWidget {
+  const StateConsumerFamily({
+    super.key,
+    required this.argument,
+  });
+
+  final R argument;
+
+  Widget buildState(BuildContext context, T state);
+
+  @override
+  Widget build(BuildContext context) {
+    var state = context.getStateFamily<T, R>(argument);
     return StateBuilder<T>(stateContainer: state, builder: buildState);
   }
 }
@@ -286,7 +373,7 @@ class _StateBuilderState<T> extends State<StateBuilder<T>> {
 
   void _listen(T oldState, T newState) {
     setState(() {
-      state = oldState;
+      state = newState;
     });
   }
 
