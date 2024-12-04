@@ -1,5 +1,5 @@
 # Flutter 
-Flutter Architecture Advanced Training
+Flutter Architecture Expert Training
 
 ---
 ## Agenda

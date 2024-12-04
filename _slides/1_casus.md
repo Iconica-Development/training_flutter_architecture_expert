@@ -92,9 +92,9 @@ An overview page where a paginated filtered ordered list of trainings is visible
 
 Based on the user, you view a training in several categories:
 
-Student: History, Upcoming, Available
-Trainer: Upcoming, History
-Administrator: All training in one view
+- Student: History, Upcoming, Available
+- Trainer: Upcoming, History
+- Administrator: All training in one view
 
 Clicking on a training will go to a detail page with different functionality based on the type of user.
   
