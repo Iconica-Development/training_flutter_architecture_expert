@@ -21,6 +21,8 @@ final courseProvider = FutureProvider.family<CourseFilterResult, int>(
   },
 );
 
+final provider = Provider.family<int, String>((ref, args) => 1);
+
 final asyncStudentListProvider =
     AsyncNotifierProvider.family<StudentListNotifier, List<Student>, String>(
         () => StudentListNotifier());

@@ -204,13 +204,13 @@ class TripleState<T> {
   bool get hasError => error != null;
 
   TripleState<R> map<R>({
-    required TripleState<R> Function(T data) data,
-    required TripleState<R> Function(Object error, StackTrace stackTrace) error,
-    required TripleState<R> Function() loading,
+    required TripleState<R> Function(TripleState<T> dataState) data,
+    required TripleState<R> Function(TripleState<T> errorState) error,
+    required TripleState<R> Function(TripleState<T> loadingState) loading,
   }) {
-    if (isLoading) return loading();
-    if (hasError) return error(error, stackTrace!);
-    return data((this.data ?? this.previousData) as T);
+    if (isLoading) return loading(this);
+    if (hasError) return error(this);
+    return data(this);
   }
 
   R when<R>({
@@ -219,7 +219,7 @@ class TripleState<T> {
     required R Function() loading,
   }) {
     if (isLoading) return loading();
-    if (hasError) return error(error, stackTrace!);
+    if (hasError) return error(this.error!, stackTrace!);
     return data((this.data ?? this.previousData) as T);
   }
 }
@@ -379,12 +379,12 @@ class _StateBuilderState<T> extends State<StateBuilder<T>> {
 
   @override
   void dispose() {
-    super.dispose();
     widget.stateContainer.removeListener(_listen);
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return widget.builder(context, widget.stateContainer.state);
+    return widget.builder(context, state);
   }
 }
